@@ -1,3 +1,26 @@
-<p>
-  hdpeinput works!
-</p>
+<div class="container">
+  <div class="content">
+    <div class="workable">
+      <div class="dropdown">
+        <div class="dropdown-content-others"></div>
+        <div class="dropdown-content-main"></div>
+        <div class="dropdown-content-others"></div>
+      </div>
+
+      <div class="inputcontainer">
+        <ng-container *ngIf="currentinput==1">
+          <app-ncuparameters></app-ncuparameters>
+        </ng-container>
+        <ng-container *ngIf="currentinput==2">
+          <app-gradeactivation></app-gradeactivation>
+        </ng-container>
+      </div>
+      <div class="button"></div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="delete"></div>
+    <div class="move" (click)="nextinput()"></div>
+    <div class="move" (click)="currentinput = currentinput+1;"></div>
+  </div>
+</div>
