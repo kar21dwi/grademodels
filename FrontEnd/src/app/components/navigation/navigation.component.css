@@ -57,6 +57,19 @@
 	align-items: center;
 }
 
+.container3 {
+	grid-column: 11/-5;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.inputsname {
+	font-family: Open Sans;
+	font-size: 14px;
+	color: white;
+}
+
 .arrows {
 	background: whitesmoke;
 	width: 30%;

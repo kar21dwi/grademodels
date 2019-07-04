@@ -8,14 +8,25 @@
       </div>
 
       <div class="inputcontainer">
-        <ng-container *ngIf="currentinput==1">
-          <app-ncuparameters></app-ncuparameters>
+        <ng-container [ngSwitch]="currentinput">
+          <app-ncuparameters *ngSwitchCase="1"></app-ncuparameters>
+          <app-gradeactivation *ngSwitchCase="2"></app-gradeactivation>
+          <app-modelvariable *ngSwitchCase="3"></app-modelvariable>
+          <app-demandstock *ngSwitchCase="4"></app-demandstock>
+          <app-demandpattern *ngSwitchCase="5"></app-demandpattern>
+          <app-contribution *ngSwitchCase="6"></app-contribution>
+          <app-gmdemand *ngSwitchCase="7"></app-gmdemand>
+          <app-executionparameters *ngSwitchCase="8"></app-executionparameters>
+          <app-minimumsales *ngSwitchCase="9"></app-minimumsales>
+          <app-maximumsales *ngSwitchCase="10"></app-maximumsales>
+          <app-restartparameters *ngSwitchCase="11"></app-restartparameters>
+          <app-lastgraderun *ngSwitchCase="12"></app-lastgraderun>
+          <app-transitions *ngSwitchCase="13"></app-transitions>
+          <app-tph *ngSwitchCase="14"></app-tph>
         </ng-container>
-        <ng-container *ngIf="currentinput==2">
-          <app-gradeactivation></app-gradeactivation>
-        </ng-container>
+
       </div>
-      <div class="button"></div>
+      <div class="button" (click)="router.navigate([ 'hdpecurrentoutput' ]);"></div>
     </div>
   </div>
   <div class="actions">
