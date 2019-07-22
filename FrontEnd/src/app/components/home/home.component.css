@@ -23,11 +23,11 @@
 	align-items: top;
 	grid-column: 1/-1;
 	grid-row: 1/-1;
-	background: rgb(217, 229, 233);
+	background: transparent;
 }
 
 .workable {
-	background: rgb(245, 230, 252);
+	background: transparent;
 	width: 90%;
 	top: 0px;
 	height: 550px;
@@ -38,16 +38,19 @@
 }
 
 .top {
-	background: rgb(219, 243, 240);
+	background: transparent;
 	width: 80%;
 	height: 70%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-family: Open Sans Regular;
+	font-size: 18px;
+	color: #6d6d6d;
 }
 
 .mid {
-	background: rgb(219, 243, 240);
+	background: transparent;
 	width: 80%;
 	height: 10%;
 	display: flex;
@@ -56,7 +59,7 @@
 }
 
 .bottom {
-	background: rgb(219, 243, 240);
+	background: transparent;
 	width: 80%;
 	height: 10%;
 	display: flex;
@@ -65,26 +68,31 @@
 }
 
 .runtype {
-	background: rgb(182, 182, 163);
+	background: transparent;
 	height: 80%;
 	width: 40%;
 }
 
 .seperator-v {
-	background: rgb(182, 182, 163);
+	background: rgb(202, 202, 179);
 	height: 80%;
 	width: 5%;
 	margin: 0px 10px;
+	border-left: 15.5px solid white;
+	border-right: 15.5px solid white;
 }
 
 .seperator-h {
-	background: rgb(182, 182, 163);
+	background: rgb(202, 202, 179);
 	height: 60%;
 	width: 88%;
+	border-top: 13.4px solid white;
+	border-bottom: 13.5px solid white;
 }
 
 .additions {
-	background: rgb(182, 182, 163);
+	background: transparent;
 	height: 60%;
 	width: 10%;
+	text-align: center;
 }

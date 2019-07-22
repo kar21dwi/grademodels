@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HdpeinputComponent implements OnInit {
 	currentinput = 1;
+	saveflag = false;
 
 	constructor(private router: Router) {}
 
@@ -18,4 +19,10 @@ export class HdpeinputComponent implements OnInit {
 			this.currentinput = this.currentinput - 1;
 		}
 	}
+
+	receivetablechangestatus($event) {
+		this.saveflag = $event;
+	}
+
+	confirmtable() {}
 }

@@ -1,18 +1,30 @@
 <div class="main">
   <div class="container">
     <div class="container1">
-      <div class="arrows"></div>
-      <div class="homepage"></div>
-      <div class="history"></div>
+      <div class="arrows"><i class="material-icons"
+          style="padding:5px; padding-right: 3px; cursor: pointer; transform: scale(1.4); color: beige;">
+          chevron_left
+        </i>
+        <i class="material-icons"
+          style="padding:5px; padding-left: 3px; cursor: pointer; transform: scale(1.4); color: beige;">
+          chevron_right
+        </i>
+      </div>
+      <div class="homepage"><i class="material-icons"
+          style="padding:5px; cursor: pointer; transform: scale(1.2); color: beige;" (click)="router.navigate([ '' ]);">
+          home
+        </i></div>
+      <div class=" history">
+        <div style="padding:7px 0px; cursor: pointer; color: beige;"> History </div>
+      </div>
 
     </div>
-    <div class="container3" *ngIf="router.url=='/hdpeinput'">
-      <span class="inputsname">Common Parameters</span>
-      <span class="inputsname">Main Parameters</span>
-      <span class="inputsname">Other Parameters</span>
-    </div>
+
     <div class="container2">
-      <div class="close"></div>
+      <div class="close"><i class="material-icons"
+          style="padding:5px; cursor: pointer; transform: scale(1.2); color: beige;">
+          clear
+        </i></div>
 
     </div>
 

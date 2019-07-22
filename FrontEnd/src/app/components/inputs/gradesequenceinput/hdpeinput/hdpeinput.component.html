@@ -2,36 +2,88 @@
   <div class="content">
     <div class="workable">
       <div class="dropdown">
-        <div class="dropdown-content-others"></div>
-        <div class="dropdown-content-main"></div>
-        <div class="dropdown-content-others"></div>
+        <div class="dropdown-content-others"><span>Common Parameters</span>
+          <div class="dropdown-content1">
+            <span (click)="!saveflag? currentinput=1:0" [style.opacity]="!saveflag? '1':'0.3'">NCU Parameters</span>
+          </div>
+        </div>
+        <div class="dropdown-content-main"><span>Main Parameters</span>
+          <div class="dropdown-content2">
+            <div style="margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+              <span (click)="!saveflag? currentinput=2:0" [style.opacity]="!saveflag? '1':'0.3'">Grade Activation</span>
+              <span (click)="!saveflag? currentinput=3:0" [style.opacity]="!saveflag? '1':'0.3'">Model Variable</span>
+              <span (click)="!saveflag? currentinput=4:0" [style.opacity]="!saveflag? '1':'0.3'">Demand Stock</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span (click)="!saveflag? currentinput=5:0" [style.opacity]="!saveflag? '1':'0.3'">Demand Pattern</span>
+              <span (click)="!saveflag? currentinput=6:0" [style.opacity]="!saveflag? '1':'0.3'">Contribution</span>
+              <span (click)="!saveflag? currentinput=7:0" [style.opacity]="!saveflag? '1':'0.3'">GM Demand</span>
+            </div>
+            <div style="margin-top:4px; display: flex; justify-content: space-between; align-items: center;">
+              <span (click)="!saveflag? currentinput=8:0" [style.opacity]="!saveflag? '1':'0.3'">Exec Params</span>
+              <span (click)="!saveflag? currentinput=9:0" [style.opacity]="!saveflag? '1':'0.3'">Min Sales</span>
+              <span (click)="!saveflag? currentinput=10:0" [style.opacity]="!saveflag? '1':'0.3'">Max Sales</span>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-content-others"><span>Other Parameters</span>
+          <div class="dropdown-content3">
+            <div style="margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+              <span (click)="!saveflag? currentinput=11:0" [style.opacity]="!saveflag? '1':'0.3'">Restart Params</span>
+              <span (click)="!saveflag? currentinput=12:0" [style.opacity]="!saveflag? '1':'0.3'">Last Grade</span>
+            </div>
+            <div style="margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+              <span (click)="!saveflag? currentinput=13:0" [style.opacity]="!saveflag? '1':'0.3'">Transitions</span>
+              <span (click)="!saveflag? currentinput=14:0" [style.opacity]="!saveflag? '1':'0.3'">Throughput</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="inputcontainer">
         <ng-container [ngSwitch]="currentinput">
-          <app-ncuparameters *ngSwitchCase="1"></app-ncuparameters>
-          <app-gradeactivation *ngSwitchCase="2"></app-gradeactivation>
-          <app-modelvariable *ngSwitchCase="3"></app-modelvariable>
-          <app-demandstock *ngSwitchCase="4"></app-demandstock>
-          <app-demandpattern *ngSwitchCase="5"></app-demandpattern>
-          <app-contribution *ngSwitchCase="6"></app-contribution>
-          <app-gmdemand *ngSwitchCase="7"></app-gmdemand>
-          <app-executionparameters *ngSwitchCase="8"></app-executionparameters>
-          <app-minimumsales *ngSwitchCase="9"></app-minimumsales>
-          <app-maximumsales *ngSwitchCase="10"></app-maximumsales>
-          <app-restartparameters *ngSwitchCase="11"></app-restartparameters>
-          <app-lastgraderun *ngSwitchCase="12"></app-lastgraderun>
-          <app-transitions *ngSwitchCase="13"></app-transitions>
-          <app-tph *ngSwitchCase="14"></app-tph>
+          <app-ncuparameters *ngSwitchCase="1" (tablechange)="receivetablechangestatus($event)"></app-ncuparameters>
+          <app-gradeactivation *ngSwitchCase="2" (tablechange)="receivetablechangestatus($event)"></app-gradeactivation>
+          <app-modelvariable *ngSwitchCase="3" (tablechange)="receivetablechangestatus($event)"></app-modelvariable>
+          <app-demandstock *ngSwitchCase="4" (tablechange)="receivetablechangestatus($event)"></app-demandstock>
+          <app-demandpattern *ngSwitchCase="5" (tablechange)="receivetablechangestatus($event)"></app-demandpattern>
+          <app-contribution *ngSwitchCase="6" (tablechange)="receivetablechangestatus($event)"></app-contribution>
+          <app-gmdemand *ngSwitchCase="7" (tablechange)="receivetablechangestatus($event)"></app-gmdemand>
+          <app-executionparameters *ngSwitchCase="8" (tablechange)="receivetablechangestatus($event)">
+          </app-executionparameters>
+          <app-minimumsales *ngSwitchCase="9" (tablechange)="receivetablechangestatus($event)"></app-minimumsales>
+          <app-maximumsales *ngSwitchCase="10" (tablechange)="receivetablechangestatus($event)"></app-maximumsales>
+          <app-restartparameters *ngSwitchCase="11" (tablechange)="receivetablechangestatus($event)">
+          </app-restartparameters>
+          <app-lastgraderun *ngSwitchCase="12" (tablechange)="receivetablechangestatus($event)"></app-lastgraderun>
+          <app-transitions *ngSwitchCase="13" (tablechange)="receivetablechangestatus($event)"></app-transitions>
+          <app-tph *ngSwitchCase="14" (tablechange)="receivetablechangestatus($event)"></app-tph>
         </ng-container>
-
+        <div class="button" [style.opacity]="!saveflag? '1':'0.3'"
+          (click)="!saveflag?router.navigate([ 'hdpecurrentoutput' ]):0">
+          <div>OPTIMIZE</div>
+        </div>
       </div>
-      <div class="button" (click)="router.navigate([ 'hdpecurrentoutput' ]);"></div>
+
     </div>
   </div>
   <div class="actions">
-    <div class="delete"></div>
-    <div class="move" (click)="nextinput()"></div>
-    <div class="move" (click)="currentinput = currentinput+1;"></div>
+    <div class="delete" style="display: flex; align-items: center;justify-content: center;"
+      [style.opacity]="saveflag? '1':'0.3'"><i class="material-icons" (click)="saveflag?(saveflag=!saveflag):0"
+        style="cursor: pointer; transform: scale(1); color: rgba(37, 29, 8, 0.685);">
+        save
+      </i></div>
+    <div class="move" (click)="!saveflag?nextinput():0"
+      style="display: flex; align-items: center;justify-content: center;"
+      [style.opacity]="!saveflag && currentinput>1? '1':'0.3'"><i class="material-icons"
+        style="cursor: pointer; transform: scale(1.2); color: rgba(37, 29, 8, 0.685);">
+        chevron_left
+      </i></div>
+    <div class="move" (click)="!saveflag && currentinput<14? (currentinput = currentinput+1):0 "
+      style="display: flex; align-items: center;justify-content: center;"
+      [style.opacity]="!saveflag && currentinput<14? '1':'0.3'"><i class="material-icons"
+        style="cursor: pointer; transform: scale(1.2); color: rgba(37, 29, 8, 0.685);">
+        chevron_right
+      </i></div>
   </div>
 </div>

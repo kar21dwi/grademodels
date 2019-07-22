@@ -4,6 +4,41 @@
     <div class="heading">
       <span style="margin: 10px;">Last Grade Run</span>
     </div>
-    <div class="datasheet"></div>
+    <div class="datasheet">
+      <br>
+      <div Style="font-family: Open Sans Semibold; font-size: 14px; color: #4b4b4b; padding-left: 40px;">
+        Main Grade Production
+      </div>
+      <br>
+      <ag-grid-angular style="font-size: 14px; color: #4b4b4b;" class="ag-theme-material" [gridOptions]="gridOptions1">
+
+      </ag-grid-angular>
+      <br>
+      <div Style="font-family: Open Sans Semibold; font-size: 14px; color: #4b4b4b; padding-left: 40px;">
+        Transition Grade Production
+      </div>
+      <br>
+      <ag-grid-angular style="font-size: 14px; color: #4b4b4b;" class="ag-theme-material" [gridOptions]="gridOptions2">
+
+      </ag-grid-angular>
+      <br>
+      <div Style="font-family: Open Sans Semibold; font-size: 14px; color: #4b4b4b; padding-left: 40px;">
+        Maintenance
+      </div>
+      <br>
+      <ag-grid-angular style="width:50%; font-size: 14px; color: #4b4b4b;" class="ag-theme-material"
+        [gridOptions]="gridOptions3">
+
+      </ag-grid-angular>
+      <br>
+      <div Style="font-family: Open Sans Semibold; font-size: 14px; color: #4b4b4b; padding-left: 40px;">
+        Under Restart
+      </div>
+      <br>
+      <ag-grid-angular style="width:70%; font-size: 14px; color: #4b4b4b;" class="ag-theme-material"
+        [gridOptions]="gridOptions4">
+
+      </ag-grid-angular>
+    </div>
   </div>
 </div>

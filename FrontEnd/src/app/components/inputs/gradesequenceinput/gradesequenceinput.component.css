@@ -23,29 +23,36 @@
 	align-items: top;
 	grid-column: 1/-1;
 	grid-row: 1/-1;
-	background: rgb(217, 229, 233);
+	background: transparent;
 }
 
 .workable {
-	background: rgb(245, 230, 252);
+	background: transparent;
 	width: 90%;
 	top: 0px;
 	height: 550px;
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: Open Sans Regular;
+	font-size: 18px;
+	color: #6d6d6d;
+}
 
+.gradehead {
+	background: transparent;
+	height: 80%;
+	width: 25%;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.gradehead {
-	background: rgb(182, 182, 163);
-	height: 80%;
-	width: 25%;
-}
-
 .seperator {
-	background: rgb(182, 182, 163);
+	background: rgb(202, 202, 179);
 	height: 80%;
 	width: 5%;
 	margin: 0px 10px;
+	border-left: 20.5px solid white;
+	border-right: 20px solid white;
 }

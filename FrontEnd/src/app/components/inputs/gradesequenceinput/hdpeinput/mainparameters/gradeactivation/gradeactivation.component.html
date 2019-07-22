@@ -4,6 +4,17 @@
     <div class="heading">
       <span style="margin: 10px;">Grade Activation</span>
     </div>
-    <div class="datasheet"></div>
+    <div class="datasheet">
+      <div style="display: flex;flex-direction:column; justify-content:center; align-items: center">
+        <div *ngFor="let g of gradelist; index as i">
+          <mat-slide-toggle [checked]="flag[i]" (change)="changeflag(i)"></mat-slide-toggle>
+        </div>
+      </div>
+      <div style="display: flex;flex-direction:column; justify-content:center; align-items: left;">
+        <div *ngFor="let g of gradelist">
+          <span id="gradename">{{g}}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

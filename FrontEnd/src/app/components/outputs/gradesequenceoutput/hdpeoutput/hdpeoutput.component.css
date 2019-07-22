@@ -1,0 +1,19 @@
+.button {
+	background: transparent;
+	height: 44px;
+	width: 190px;
+	border-radius: 5px 5px 5px 5px;
+	letter-spacing: 1px;
+	margin: auto;
+
+	border: 1px solid rgb(109, 106, 86);
+	font-size: 24px;
+	font-family: Open Sans Regular;
+	cursor: pointer;
+	color: rgb(109, 106, 86);
+	text-align: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

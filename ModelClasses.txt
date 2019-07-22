@@ -1,0 +1,345 @@
+
+'''/////////////////////////////////////////  MASTER CLASSES  ///////////////////////////////////////////'''
+
+
+class Grade_Number(models.Model):
+    Grade_Name = models.TextField()
+    Polymer_Type = (0<-HDPE) || (1<-LLDPE) || (2<-PP)  ''' takes only three values (0,1,2)   '''
+    Restart_Grade = models.BooleanField()
+    Series_Parallel = (0<-Series) || (1<-Parallel) || (null<- neither Series nor Parallel)  ''' takes only three values (null,0,1)  '''
+    Maximum_Run_Length = models.FloatField(null=True, blank=True) 
+
+
+class Grade_Activation(models.Model):
+    Active_Status = models.BooleanField()
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)  
+
+
+class Contribution_Areas(models.Model):
+    Area_Name = models.TextField()
+
+
+class Trains(models.Model):
+    Name = models.TextField()
+   
+
+'''/////////////////////////////////////////  MASTER CLASSES  ///////////////////////////////////////////'''
+
+
+
+
+
+
+
+
+'''/////////////////////////////////////////  INPUT CLASSES  ///////////////////////////////////////////'''
+
+################### Sheet1 ####################    
+
+
+class Grade_Run(models.Model):
+    Model_Type = models.IntegerField()
+    Exponential_Factor = models.FloatField()
+    Decay_Factor = models.FloatField()
+    Plan_Days = models.IntegerField()
+    Sliding_Window = models.IntegerField()
+    Series_Run = models.IntegerField(null=True, blank=True)
+    Parallel_Run = models.IntegerField(null=True, blank=True)
+    Date_Time = models.DateTimeField()
+    Confirmation = models.BooleanField(default=False)
+    Run_Name = models.TextField(null=True, blank=True)
+    Run_Month = models.TextField(null=True, blank=True)
+    Run_Year = models.TextField(null=True, blank=True)
+    Polymer_Type = (0<-HDPE) || (1<-LLDPE) || (2<-PP)
+    Saved_Output_Name = models.TextField(null=True, blank=True)
+
+################### Sheet1 ####################    
+
+################### Sheet2 ####################  
+
+class Demand_Stock(models.Model):
+    Demand = models.FloatField()
+    Opening_Inventory = models.FloatField()
+    Closing_Inventory = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet2 ####################     
+
+################### Sheet3 ####################  
+  
+class Demand_Pattern(models.Model):
+    Day = models.IntegerField()
+    Demand_Percentage = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet3 ####################  
+
+################### Sheet4 ####################  
+
+class TPH(models.Model):
+    Train_TPH = models.FloatField()
+    Minimum_Batch_Size = models.FloatField()
+    C2_Percentage = models.FloatField()
+    C3_Percentage = models.FloatField()
+    Trains = models.ForeignKey(Trains,on_delete =models.CASCADE)
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet4 ####################  
+
+################### Sheet5 ####################  
+
+
+class Contribution(models.Model):
+    Contribution_Amount = models.FloatField()
+    contribution_Areas = models.ForeignKey(Contribution_Areas,on_delete =models.CASCADE)
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+   
+################### Sheet5 #################### 
+
+################### Sheet6 #################### 
+
+
+class Minimum_Sales(models.Model):
+    Minimum_Sales_Amount = models.FloatField()
+    contribution_Areas = models.ForeignKey(Contribution_Areas,on_delete =models.CASCADE)
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet6 ####################  
+
+################### Sheet7 #################### 
+
+
+class Maximum_Sales(models.Model):
+    Maximum_Sales_Amount = models.FloatField()
+    contribution_Areas = models.ForeignKey(Contribution_Areas,on_delete =models.CASCADE)
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet7 #################### 
+
+################### Sheet8 ####################  
+
+
+class GM_Demand(models.Model):
+    GM_Demand = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+    contribution_Areas = models.ForeignKey(Contribution_Areas,on_delete =models.CASCADE)
+
+################### Sheet8 #################### 
+
+################### Sheet9 #################### 
+
+class Restart_Parameters(models.Model):
+    Hours_Prime_Production = models.FloatField()
+    Avg_TPH = models.FloatField()
+    NP_Amount = models.FloatField()
+    OG_Amount = models.FloatField()
+    LG_Amount = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+   
+################### Sheet9 #################### 
+
+################### Sheet10 #################### 
+
+class Execution_Parameters(models.Model):
+    Start_Date_Time = models.DateTimeField(blank = True, null = True)
+    Duration = models.IntegerField()
+    Maintenance_Start_Day = models.IntegerField()
+    Maintenance_Start_Hour = models.IntegerField()
+    Maintenance_Duration = models.IntegerField()
+    Initial_Maintenance_Duration = models.IntegerField()
+    Allowable_Days = models.IntegerField()
+    Allowable_Hours = models.IntegerField()
+    Difference_Days = models.IntegerField()
+    Difference_Hours = models.IntegerField()
+    Trains = models.ForeignKey(Trains,on_delete =models.CASCADE)
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet10 #################### 
+
+################### Sheet11 #################### 
+
+
+class NCU_Parameters(models.Model):
+    NCU_Load = models.FloatField()
+    Ethylene_Yield = models.FloatField()
+    Propylene_Yield = models.FloatField()
+    Day = models.IntegerField()
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet11 #################### 
+
+################### Sheet12 #################### 
+
+
+class Transition(models.Model):
+    Transition_TPH = models.FloatField()
+    Transition_Hour = models.IntegerField()
+    Transition_NP = models.FloatField()
+    Transition_OG = models.FloatField()
+    Transition_LG = models.FloatField()
+    Grade_Number_From = models.ForeignKey(Grade_Number,on_delete =models.CASCADE, null=True, related_name='Grade_Number_From')
+    Grade_Number_To = models.ForeignKey(Grade_Number,on_delete =models.CASCADE, null=True, related_name='Grade_Number_To')
+    Grade_Run = models.ForeignKey(Grade_Run,on_delete =models.CASCADE)
+
+################### Sheet12 #################### 
+
+################### Sheet13 #################### 
+
+
+class Last_Running_Grades(models.Model):
+    Grade_Run = models.OneToOneField(Grade_Run,on_delete =models.CASCADE)
+    Output_Summary = models.OneToOneField(Output_Summary,on_delete =models.CASCADE)
+   
+
+class Last_Main_Grade(models.Model):
+
+    Grade_Hours_Completed = models.FloatField()
+    Series_Parallel_Hours_Completed = models.FloatField()
+    Family_Hours_Completed = models.FloatField()
+    Trains = models.ForeignKey(Trains, on_delete =models.CASCADE)
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE) 
+    Last_Running_Grades = models.ForeignKey(Last_Running_Grades,on_delete =models.CASCADE)
+   
+
+
+class Last_Transition_Grade(models.Model):
+    Transition_Hours_Completed = models.FloatField(null=True, blank=True)
+    Trains = models.ForeignKey(Trains, on_delete =models.CASCADE, null=True, blank=True)
+    Transition = models.ForeignKey(Transition, on_delete =models.CASCADE, null=True, blank=True) 
+    Last_Running_Grades = models.ForeignKey(Last_Running_Grades,on_delete =models.CASCADE)
+   
+
+
+class Last_Maintenance(models.Model):
+    Maintenance_Hours_Left = models.FloatField(null=True, blank=True)
+    Trains = models.ForeignKey(Trains, on_delete =models.CASCADE, null=True, blank=True)
+    Last_Running_Grades = models.ForeignKey(Last_Running_Grades,on_delete =models.CASCADE)
+   
+
+
+class Last_Under_Restart(models.Model):
+    Remaining_Hours_Max_TPH = models.FloatField(null=True, blank=True)
+    Trains = models.ForeignKey(Trains, on_delete =models.CASCADE, null=True, blank=True)
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE, null=True, blank=True)
+    Last_Running_Grades = models.ForeignKey(Last_Running_Grades,on_delete =models.CASCADE)
+
+
+################### Sheet13 ####################     
+
+'''/////////////////////////////////////////  INPUT CLASSES  ///////////////////////////////////////////'''
+
+
+
+
+
+
+
+
+'''/////////////////////////////////////////  OUTPUT CLASSES  ///////////////////////////////////////////'''
+
+################### Sheet1 #################### 
+
+class Output_Summary(models.Model):
+
+    Grade_Run = models.OneToOneField(Grade_Run,on_delete =models.CASCADE)
+   
+
+class Output_Grade(models.Model):
+
+    Day = models.IntegerField()
+    Production_Amount = models.FloatField()
+    Trains = models.ForeignKey(Trains, on_delete =models.CASCADE)    ''' can be null '''
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)
+
+################### Sheet1 ####################   
+
+################### Sheet2 ####################   
+
+
+class Net_Grade_Production(models.Model):
+
+    Day = models.IntegerField()
+    Production_Amount = models.FloatField()
+    Demand_Amount = models.FloatField()
+    Plan_Amount = models.FloatField()
+    Trains = models.ForeignKey(Trains, on_delete =models.CASCADE)    ''' can be null '''
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)    
+
+class Inventory(models.Model):
+
+    Day = models.IntegerField()
+    Inventory_Amount = models.FloatField()
+    Opening_Amount = models.FloatField()
+    Closing_Amount = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)  
+
+class Daily_Demand(models.Model):
+
+    Day = models.IntegerField()
+    Daily_Demand_Amount = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)  
+
+class Stock_Out(models.Model):
+
+    Day = models.IntegerField()
+    Daily_Stockout_Amount = models.FloatField()
+    Total_Stockout = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)  
+
+class Stock_Summary(models.Model):
+
+    Closing_Req = models.FloatField()
+    Closing_Actual = models.FloatField()
+    Actual_Closing_Req = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)      
+
+################### Sheet2 ####################                  
+   
+################### Sheet3 ####################   
+
+class Output_Transition(models.Model):
+    
+    Day = models.IntegerField()
+    Transition_Amount = models.FloatField()
+    Trains = models.ForeignKey(Trains, on_delete =models.CASCADE)      ''' can be null '''
+    Transition = models.ForeignKey(Transition, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)
+
+################### Sheet3 ####################      
+   
+################### Sheet4 ####################   
+
+class Output_NonPrime(models.Model):
+   
+    Day = models.IntegerField()
+    NP_Production = models.FloatField()
+    OG_Production = models.FloatField()
+    LG_Production = models.FloatField()
+    Ethylene_Consumed = models.FloatField()
+    Propylene_Consumed = models.FloatField()
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)
+
+class Avg_Weight_Contribution(models.Model):
+   
+    Weight_Avg_Contribution = models.FloatField()
+    Grade_Number = models.ForeignKey(Grade_Number, on_delete =models.CASCADE)
+    Output_Summary = models.ForeignKey(Output_Summary, on_delete =models.CASCADE)    
+
+ ################### Sheet4 ####################     
+ 
+'''/////////////////////////////////////////  OUTPUT CLASSES  ///////////////////////////////////////////'''                                                                                                                                            
